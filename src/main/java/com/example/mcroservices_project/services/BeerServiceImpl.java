@@ -8,9 +8,16 @@ import java.util.UUID;
 @Service
 public class BeerServiceImpl implements BeerService {
     @Override
-    public BeerDto getBeerById(String beerId) {
+    public BeerDto getBeerById(UUID beerId) {
         return BeerDto.builder().id(UUID.randomUUID()).beerName("Corono Extra ").
                 beerStyle("Pale larger")
                 .upc(123L).build();
+    }
+
+    @Override
+    public BeerDto saveNewBeer() {
+        return BeerDto.builder()
+                .id(UUID.randomUUID())
+                .build();
     }
 }
