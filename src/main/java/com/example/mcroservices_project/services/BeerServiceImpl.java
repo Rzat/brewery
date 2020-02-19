@@ -11,8 +11,7 @@ import java.util.UUID;
 public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto getBeerById(UUID beerId) {
-        return BeerDto.builder().id(UUID.randomUUID()).beerName("Corono Extra ").
-                beerStyle("Pale larger")
+        return BeerDto.builder().id(UUID.randomUUID()).beerName("Corono Extra ")
                 .upc(123L).build();
     }
 
