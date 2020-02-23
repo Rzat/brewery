@@ -5,10 +5,13 @@ import com.example.mcroservices_project.web.model.CustomerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
+@Validated
 @RestController
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
@@ -24,7 +27,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity createNewCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity createNewCustomer(@Valid  @RequestBody CustomerDto customerDto) {
         CustomerDto saveNewCustomer = customerService.saveNewCustomer(customerDto);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/customer/" + saveNewCustomer.getId().toString());
@@ -33,7 +36,7 @@ public class CustomerController {
 
     @PutMapping({"/{customerId}"})
     public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId,
-                                         @RequestBody CustomerDto customerDto) {
+                                         @Valid @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId, customerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -42,7 +45,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable("customerId") UUID customerId) {
         customerService.deleteCustomer(customerId);
-
-
     }
+
+
 }
