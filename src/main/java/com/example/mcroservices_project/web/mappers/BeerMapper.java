@@ -4,7 +4,7 @@ import com.example.mcroservices_project.domain.Beer;
 import com.example.mcroservices_project.web.model.BeerDto;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface BeerMapper {
 
     Beer beerDtoToBeer(BeerDto beerDto);
